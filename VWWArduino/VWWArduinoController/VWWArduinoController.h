@@ -5,7 +5,7 @@
 //  Copyright (c) 2014 Zakk Hoyt. No rights reserved.
 //
 //  This code is based off of SerialExample by Gabe Ghearing, available here: http://playground.arduino.cc/Interfacing/Cocoa.
-//  I wanted a pure Objective-c interface so that I could quickly/easily implement projects between Cocoa and Arduino.
+//  I wanted a pure Objective-C ARC interface so that I could quickly/easily implement projects between Cocoa and Arduino.
 //  I also wanted to have the ability to setup a termination string or chars so that the end user doens't need to worry
 //  about assembiling their data from the serial buffers
 //
@@ -13,7 +13,7 @@
 //  1.) Create an instace of this class:
 //
 //  2.) Query the available ports with
-//  -(void)refreshSerialList;
+//  -(void)availableSerialPorts;
 //
 //  3.) Connect to a port by passing one of the string from step 1 (and a baud rate) into:
 //  -(BOOL)connectToSerialPort:(NSString*)serialPort withBaudRate:(NSUInteger)baudRate;
@@ -37,6 +37,10 @@
 //  -(void)arduinoController:(VWWArduinoController*)sender didReceiveData:(NSData*)inData;;
 //  -(void)arduinoController:(VWWArduinoController*)sender didReceiveBytes:(uint8_t*)buffer length:(NSUInteger)length;
 //
+//
+//  Arduino Sketch
+//
+
 
 #import <Foundation/Foundation.h>
 
@@ -45,8 +49,7 @@
 @interface VWWArduinoController : NSObject
 
 // Enumeration
--(void)refreshSerialList;
--(NSArray*)getSerialPorts;
+-(NSArray*)availableSerialPorts;
 
 // Serial connections
 -(BOOL)connectToSerialPort:(NSString*)serialPort withBaudRate:(NSUInteger)baudRate;

@@ -44,7 +44,7 @@ static NSString *VWWArdruinoErrorDomain = @"VWWArduinoController";
 
 
 // Enumeration
--(void)refreshSerialList{
+-(NSArray*)availableSerialPorts{
     io_object_t serialPort;
 	io_iterator_t serialPortIterator;
 	
@@ -60,10 +60,8 @@ static NSString *VWWArdruinoErrorDomain = @"VWWArduinoController";
         [self.serialPorts addObject:serialPortString];
 		IOObjectRelease(serialPort);
 	}
-	
-}
--(NSArray*)getSerialPorts{
-    return [NSArray arrayWithArray:self.serialPorts];
+    
+    return self.serialPorts;
 }
 
 // Connections
@@ -256,10 +254,10 @@ static NSString *VWWArdruinoErrorDomain = @"VWWArduinoController";
 		ioctl(self.serialFileDescriptor, TIOCSDTR);
 		nanosleep(&interval, &remainder); // wait 0.1 seconds
 		ioctl(self.serialFileDescriptor, TIOCCDTR);
-	}
-    
-    NSError *error = [self error:@"Tried to reset Arduino. Not connected" code:-1];
-    [self errorOccurred:error];
+	} else {
+        NSError *error = [self error:@"Tried to reset Arduino. Not connected" code:-1];
+        [self errorOccurred:error];
+    }
     
 }
 
@@ -287,7 +285,7 @@ static NSString *VWWArdruinoErrorDomain = @"VWWArduinoController";
         [NSThread setThreadPriority:1.0];
         
         // this will loop unitl the serial port closes
-        NSMutableString *mText = [[NSMutableString alloc]initWithString:@""];
+//        NSMutableString *mText = [[NSMutableString alloc]initWithString:@""];
         while(TRUE) {
             // read() blocks until some data is available or the port is closed
             numBytes = (int)read(self.serialFileDescriptor, byte_buffer, BUFFER_SIZE); // read up to the size of the buffer
