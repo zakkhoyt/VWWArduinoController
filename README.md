@@ -1,7 +1,7 @@
 # VWWArduinoController.h
 
 
-I wanted to create a pure Objective-C ARC interface to quickly/easily communicate between Cocoa and Arduino over USB serial. Also, I liked the idea of specifying an termination string/char so that the end user wouldn't need to worry about assembiling their data from the serial buffers before processing it. This framework provides these solutions.
+I wanted to create a pure Objective-C ARC interface to quickly/easily communicate between Cocoa and Arduino over a serial connection. Also, I liked the idea of specifying an termination string/char so that the end user wouldn't need to worry about assembiling their data from the serial buffers before processing it. This framework provides these solutions.
 
 This code is based off of SerialExample by Gabe Ghearing,   [available here:](http://playground.arduino.cc/Interfacing/Cocoa)
 
