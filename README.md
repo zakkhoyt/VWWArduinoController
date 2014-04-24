@@ -21,7 +21,13 @@ How to use this class
 
 `-(BOOL)connectToSerialPort:(NSString*)serialPort withBaudRate:(NSUInteger)baudRate;`
 
-`if([arduinoController connectToSerialPort:ports[0]]) // connected`
+`if([arduinoController connectToSerialPort:ports[0]]){`
+    `// connected`
+`} else {`
+    `// not connected`
+`}`
+
+}
 
 4.) Implement the VWWArduinoControllerDelegate protocol in your controller. The delegate method will be called on any error
 
