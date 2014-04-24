@@ -15,9 +15,13 @@ How to use this class
 
 `-(void)availableSerialPorts;`
 
+`NSArray *ports = [arduinoController availabelSerialPorts];`
+
 3.) Connect to a port by passing one of the string from step 1 (and a baud rate) into:
 
 `-(BOOL)connectToSerialPort:(NSString*)serialPort withBaudRate:(NSUInteger)baudRate;`
+
+`if([arduinoController connectToSerialPort:ports[0]]) // connected`
 
 4.) Implement the VWWArduinoControllerDelegate protocol in your controller. The delegate method will be called on any error
 
