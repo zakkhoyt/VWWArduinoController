@@ -9,6 +9,8 @@ How to use this class
 
 1.) Create an instace of this class:
 
+`VWWArduinoController *arduinoController = [[VWWArduinoController alloc]init];`
+
 2.) Query the available ports with: 
 
 `-(void)availableSerialPorts;`
